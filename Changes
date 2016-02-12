@@ -1,0 +1,7 @@
+Revision history for Perl module Catalyst::Plugin::Session::Store::MongoDB
+
+0.02 Wed Jun  2 16:25:29 CEST 2010
+    - complete rewrite by "Stefan Völkel <bd@bc-bd.org>"
+
+0.01 Thu May 27 12:49:18 2010
+    - first version by "Cory G Watson <gphat at cpan.org>"

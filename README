@@ -1,0 +1,50 @@
+NAME
+    Catalyst::Plugin::Session::Store::MongoDB - MongoDB session store for
+    Catalyst
+
+SYNOPSIS
+    In your MyApp.pm:
+
+            use Catalyst qw/
+                    Session
+                    Session::Store::MongoDB
+                    Session::State::Cookie # or similar
+            /;
+
+    and in your MyApp.conf
+
+            <Plugin::Session>
+                    hostname foo            # defaults to localhost
+                    port 0815               # defaults to 27017
+                    dbname test             # defaults to catalyst
+                    collectionname s2       # defaults to session
+            </Plugin::Session>
+
+    Then you can use it as usual:
+
+        $c->session->{foo} = 'bar'; # will be saved
+
+DESCRIPTION
+    "Catalyst::Plugin::Session::Store::MongoDB" is a session storage plugin
+    using MongoDB (<http://www.mongodb.org>) as it's backend.
+
+USAGE
+    Expired Sessions
+        This store automatically deletes sessions when they expire.
+        Additionally it implements the optional delete_expired_sessions()
+        method.
+
+AUTHOR
+        Stefan Völkel
+        bd@bc-bd.org
+        http://bc-bd.org
+
+COPYRIGHT
+    Copyright 2010 Stefan Völkel <bd@bc-bd.org>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License v2 as published by the
+    Free Software Foundation; or the Artistic License.
+
+    See http://dev.perl.org/licenses/ for more information.
+

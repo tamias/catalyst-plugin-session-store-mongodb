@@ -1,0 +1,15 @@
+MANIFEST
+README
+LICENSE
+Todo
+Changes
+Makefile.PL
+lib/Catalyst/Plugin/Session/Store/MongoDB.pm
+t/001_load.t
+t/002_parameters.t
+t/005_class.t
+t/lib
+t/lib/Fixture.pm
+t/006_reuseable.t
+t/004_direct.t
+META.yml                                 Module meta-data (added by MakeMaker)
