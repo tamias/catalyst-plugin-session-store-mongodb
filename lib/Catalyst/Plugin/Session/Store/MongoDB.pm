@@ -12,12 +12,20 @@ use Data::Dumper;
 
 BEGIN { extends 'Catalyst::Plugin::Session::Store' }
 
+has connection => (
+  isa => 'HashRef',
+  is => 'ro',
+  lazy_build => 1,
+);
+
+# deprecated
 has hostname => (
   isa => 'Str',
   is => 'ro',
   lazy_build => 1,
 );
 
+# deprecated
 has port => (
   isa => 'Int',
   is => 'ro',
@@ -57,9 +65,18 @@ has '_db' => (
 sub _cfg_or_default {
   my ($self, $name, $default) = @_;
 
-  my $cfg = $self->_session_plugin_config;
+  # _session_plugin_config is not present for tests
+  if ($self->can('_session_plugin_config')) {
+    my $cfg = $self->_session_plugin_config;
+    return $cfg->{$name} || $default;
+  } else {
+    return $default;
+  }
+}
 
-  return $cfg->{$name} || $default;
+sub _build_connection {
+  my ($self) = @_;
+  return $self->_cfg_or_default('connection', {});
 }
 
 sub _build_hostname {
@@ -91,10 +108,19 @@ sub _build__collection {
 sub _build__connection {
   my ($self) = @_;
 
-  return MongoDB::Connection->new(
-    host => $self->hostname,
-    port => $self->port,
-  );
+  my %args;
+
+  if ($self->has_connection) {
+    %args = %{ $self->connection };
+  } else {
+    # deprecated
+    $args{'host'} = $self->hostname
+      if $self->hostname;
+    $args{'port'} = $self->port
+      if $self->port;
+  }
+
+  return MongoDB::Connection->new(%args);
 }
 
 sub _build__db {
@@ -196,10 +222,13 @@ In your MyApp.pm:
 and in your MyApp.conf
 
   <Plugin::Session>
-    hostname foo    # defaults to localhost
-    port 0815    # defaults to 27017
-    dbname test    # defaults to catalyst
-    collectionname s2  # defaults to session
+    <connection>                 # defaults to letting MongoDB::Connection
+      host mongodb://foo:27017   # use its own defaults
+      timeout 10000
+      ...
+    </connection>
+    dbname test                  # defaults to catalyst
+    collectionname s2            # defaults to session
   </Plugin::Session>
 
 Then you can use it as usual:
