@@ -2,7 +2,6 @@ package Fixture;
 use Moose;
 use namespace::autoclean;
 
-use MongoDB::Connection;
 use String::Random;
 
 has 'collection' => (

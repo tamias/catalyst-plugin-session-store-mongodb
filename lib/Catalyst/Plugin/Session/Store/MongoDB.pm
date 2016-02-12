@@ -7,7 +7,7 @@ our $VERSION = '0.02';
 use Moose;
 use namespace::autoclean;
 
-use MongoDB::Connection;
+use MongoDB::MongoClient;
 use Data::Dumper;
 
 BEGIN { extends 'Catalyst::Plugin::Session::Store' }
@@ -51,7 +51,7 @@ has '_collection' => (
 );
 
 has '_connection' => (
-  isa => 'MongoDB::Connection',
+  isa => 'MongoDB::MongoClient',
   is => 'ro',
   lazy_build => 1,
 );
@@ -120,7 +120,7 @@ sub _build__connection {
       if $self->port;
   }
 
-  return MongoDB::Connection->new(%args);
+  return MongoDB::MongoClient->new(%args);
 }
 
 sub _build__db {
@@ -222,7 +222,7 @@ In your MyApp.pm:
 and in your MyApp.conf
 
   <Plugin::Session>
-    <connection>                 # defaults to letting MongoDB::Connection
+    <connection>                 # defaults to letting MongoDB::MongoClient
       host mongodb://foo:27017   # use its own defaults
       timeout 10000
       ...
