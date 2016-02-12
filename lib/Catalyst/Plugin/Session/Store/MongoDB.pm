@@ -209,7 +209,7 @@ Then you can use it as usual:
 =head1 DESCRIPTION
 
 C<Catalyst::Plugin::Session::Store::MongoDB> is a session storage plugin using
-MongoDB (L<http://www.mongodb.org>) as it's backend.
+MongoDB (L<http://www.mongodb.org>) as its backend.
 
 =head1 USAGE
 
@@ -224,18 +224,17 @@ implements the optional delete_expired_sessions() method.
 
 =head1 AUTHOR
 
-  Stefan Völkel
-  bd@bc-bd.org
-  http://bc-bd.org
+  Ronald J Kimball, <rjk@tamias.net>
 
-=head1 COPYRIGHT
+Previous Authors
 
-Copyright 2010 Stefan Völkel <bd@bc-bd.org>
+  Stefan Völkel, <bd@bc-bd.org> <http://bc-bd.org>
+  Cory G Watson, <gphat at cpan.org>
+
+=head1 LICENSE
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License v2 as published
 by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
 
 =cut
