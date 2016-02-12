@@ -5,28 +5,31 @@ NAME
 SYNOPSIS
     In your MyApp.pm:
 
-            use Catalyst qw/
-                    Session
-                    Session::Store::MongoDB
-                    Session::State::Cookie # or similar
-            /;
+      use Catalyst qw/
+        Session
+        Session::Store::MongoDB
+        Session::State::Cookie # or similar
+      /;
 
     and in your MyApp.conf
 
-            <Plugin::Session>
-                    hostname foo            # defaults to localhost
-                    port 0815               # defaults to 27017
-                    dbname test             # defaults to catalyst
-                    collectionname s2       # defaults to session
-            </Plugin::Session>
+      <Plugin::Session>
+        <connection>                 # defaults to letting MongoDB::MongoClient
+          host mongodb://foo:27017   # use its own defaults
+          timeout 10000
+          ...
+        </connection>
+        dbname test                  # defaults to catalyst
+        collectionname s2            # defaults to session
+      </Plugin::Session>
 
     Then you can use it as usual:
 
-        $c->session->{foo} = 'bar'; # will be saved
+      $c->session->{foo} = 'bar'; # will be saved
 
 DESCRIPTION
     "Catalyst::Plugin::Session::Store::MongoDB" is a session storage plugin
-    using MongoDB (<http://www.mongodb.org>) as it's backend.
+    using MongoDB (<http://www.mongodb.org>) as its backend.
 
 USAGE
     Expired Sessions
@@ -35,16 +38,15 @@ USAGE
         method.
 
 AUTHOR
-        Stefan Völkel
-        bd@bc-bd.org
-        http://bc-bd.org
+      Ronald J Kimball, <rjk@tamias.net>
 
-COPYRIGHT
-    Copyright 2010 Stefan Völkel <bd@bc-bd.org>
+    Previous Authors
 
+      Stefan Völkel, <bd@bc-bd.org> <http://bc-bd.org>
+      Cory G Watson, <gphat at cpan.org>
+
+LICENSE
     This program is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License v2 as published by the
     Free Software Foundation; or the Artistic License.
-
-    See http://dev.perl.org/licenses/ for more information.
 
