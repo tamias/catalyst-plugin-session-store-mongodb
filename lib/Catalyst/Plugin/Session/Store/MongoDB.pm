@@ -12,7 +12,7 @@ use Data::Dumper;
 
 BEGIN { extends 'Catalyst::Plugin::Session::Store' }
 
-has connection => (
+has client_options => (
   isa => 'HashRef',
   is => 'ro',
   lazy_build => 1,
@@ -74,9 +74,9 @@ sub _cfg_or_default {
   }
 }
 
-sub _build_connection {
+sub _build_client_options {
   my ($self) = @_;
-  return $self->_cfg_or_default('connection', {});
+  return $self->_cfg_or_default('client_options', {});
 }
 
 sub _build_hostname {
@@ -110,8 +110,8 @@ sub _build__connection {
 
   my %args;
 
-  if ($self->has_connection) {
-    %args = %{ $self->connection };
+  if ($self->has_client_options) {
+    %args = %{ $self->client_options };
   } else {
     # deprecated
     $args{'host'} = $self->hostname
@@ -222,11 +222,11 @@ In your MyApp.pm:
 and in your MyApp.conf
 
   <Plugin::Session>
-    <connection>                 # defaults to letting MongoDB::MongoClient
+    <client_options>             # defaults to letting MongoDB::MongoClient
       host mongodb://foo:27017   # use its own defaults
       timeout 10000
       ...
-    </connection>
+    </client_options>
     dbname test                  # defaults to catalyst
     collectionname s2            # defaults to session
   </Plugin::Session>

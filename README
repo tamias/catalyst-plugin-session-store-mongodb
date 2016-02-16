@@ -14,11 +14,11 @@ SYNOPSIS
     and in your MyApp.conf
 
       <Plugin::Session>
-        <connection>                 # defaults to letting MongoDB::MongoClient
+        <client_options>             # defaults to letting MongoDB::MongoClient
           host mongodb://foo:27017   # use its own defaults
           timeout 10000
           ...
-        </connection>
+        </client_options>
         dbname test                  # defaults to catalyst
         collectionname s2            # defaults to session
       </Plugin::Session>

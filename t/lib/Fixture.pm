@@ -35,7 +35,7 @@ sub _build_collection {
 
 sub _build_store {
   return Catalyst::Plugin::Session::Store::MongoDB->new(
-    connection => {
+    client_options => {
       host => $ENV{MONGODB_HOST},
       port => $ENV{MONGODB_PORT},
     },

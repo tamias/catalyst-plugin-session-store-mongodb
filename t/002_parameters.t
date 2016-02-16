@@ -18,7 +18,7 @@ BEGIN {
 use_ok('Catalyst::Plugin::Session::Store::MongoDB');
 
 my $store = Catalyst::Plugin::Session::Store::MongoDB->new(
-  connection => {
+  client_options => {
     host => $ENV{MONGODB_HOST},
     port => $ENV{MONGODB_PORT},
   },
@@ -29,10 +29,10 @@ my $store = Catalyst::Plugin::Session::Store::MongoDB->new(
 ok $store, 'store';
 
 # parameters
-is $store->connection->{'host'}, $ENV{MONGODB_HOST},
-  'parameters::connection-host';
-is $store->connection->{'port'}, $ENV{MONGODB_PORT},
-  'parameters::connection-port';
+is $store->client_options->{'host'}, $ENV{MONGODB_HOST},
+  'parameters::client_options-host';
+is $store->client_options->{'port'}, $ENV{MONGODB_PORT},
+  'parameters::client_options-port';
 is $store->dbname, $ENV{TEST_DB}, 'parameters::db';
 is $store->collectionname, $ENV{TEST_COLLECTION}, 'parameters::collection';
 
