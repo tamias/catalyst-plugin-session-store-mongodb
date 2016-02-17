@@ -24,6 +24,8 @@ my $store = Catalyst::Plugin::Session::Store::MongoDB->new(
   collectionname => $ENV{TEST_COLLECTION},
 );
 
+ok $store, 'store';
+
 # parameters
 is $store->hostname, $ENV{MONGODB_HOST}, 'parameters::hostname';
 is $store->port, $ENV{MONGODB_PORT}, 'parameters::port';
@@ -36,4 +38,4 @@ ok $connection, 'connection';
 is $connection->host, $ENV{MONGODB_HOST}, 'connection host';
 is $connection->port, $ENV{MONGODB_PORT}, 'connection port';
 
-done_testing()
+done_testing();

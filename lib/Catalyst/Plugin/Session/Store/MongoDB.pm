@@ -76,7 +76,10 @@ sub _cfg_or_default {
 
 sub _build_client_options {
   my ($self) = @_;
-  return $self->_cfg_or_default('client_options', {});
+  return $self->_cfg_or_default('client_options', {
+    host => $self->hostname,
+    port => $self->port,
+  });
 }
 
 sub _build_hostname {
@@ -108,19 +111,7 @@ sub _build__collection {
 sub _build__connection {
   my ($self) = @_;
 
-  my %args;
-
-  if ($self->has_client_options) {
-    %args = %{ $self->client_options };
-  } else {
-    # deprecated
-    $args{'host'} = $self->hostname
-      if $self->hostname;
-    $args{'port'} = $self->port
-      if $self->port;
-  }
-
-  return MongoDB::MongoClient->new(%args);
+  return MongoDB::MongoClient->new($self->client_options);
 }
 
 sub _build__db {
