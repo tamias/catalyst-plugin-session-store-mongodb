@@ -111,7 +111,7 @@ sub _build__collection {
 sub _build__connection {
   my ($self) = @_;
 
-  return MongoDB::MongoClient->new($self->client_options);
+  return MongoDB::MongoClient->new(%{$self->client_options});
 }
 
 sub _build__db {
