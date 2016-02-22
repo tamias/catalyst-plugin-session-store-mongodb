@@ -290,8 +290,11 @@ Cory G Watson, <gphat at cpan.org>
 
 =head1 LICENSE
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of the GNU General Public License v2 as published
-by the Free Software Foundation; or the Artistic License.
+Copyright 2010 Stefan Völkel <bd@bc-bd.org>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License v2 or (at your
+option) any later version, as published by the Free Software
+Foundation; or the Artistic License.
 
 =cut
