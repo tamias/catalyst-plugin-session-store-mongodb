@@ -3,7 +3,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
   NAME => 'Catalyst::Plugin::Session::Store::MongoDB',
   ABSTRACT => 'MongoDB Session store for Catalyst',
-  AUTHOR => 'Stefan Völkel (bd@bc-bd.org)',
+  AUTHOR => 'Ronald J Kimball (rjk@tamias.net)',
 
   VERSION_FROM => 'lib/Catalyst/Plugin/Session/Store/MongoDB.pm',
 
