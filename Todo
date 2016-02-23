@@ -1,1 +1,3 @@
 Use Storable freeze/thaw rather than Data::Dumper dump/eval.
+Remove use of lazy_build for attributes.
+  https://rt.cpan.org/Ticket/Display.html?id=107560
