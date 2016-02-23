@@ -16,4 +16,3 @@ t/lib/Fixture.pm
 t/TestApp/lib/TestApp.pm
 t/TestApp/lib/TestApp/Controller/Root.pm
 t/TestApp/testapp.conf
-META.yml                                 Module meta-data (added by MakeMaker)
