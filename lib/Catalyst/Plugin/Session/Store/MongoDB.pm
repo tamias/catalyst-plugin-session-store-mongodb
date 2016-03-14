@@ -15,51 +15,59 @@ BEGIN { extends 'Catalyst::Plugin::Session::Store' }
 has client_options => (
   isa => 'HashRef',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build_client_options',
 );
 
 # deprecated
 has hostname => (
   isa => 'Str',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build_hostname',
 );
 
 # deprecated
 has port => (
   isa => 'Int',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build_port',
 );
 
 has dbname => (
   isa => 'Str',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build_dbname',
 );
 
 has collectionname => (
   isa => 'Str',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build_collectionname',
 );
 
 has '_collection' => (
   isa => 'MongoDB::Collection',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build__collection',
 );
 
 has '_connection' => (
   isa => 'MongoDB::MongoClient',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build__connection',
 );
 
 has '_db' => (
   isa => 'MongoDB::Database',
   is => 'ro',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build__db',
 );
 
 sub _cfg_or_default {
